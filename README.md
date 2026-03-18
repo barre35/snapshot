@@ -19,5 +19,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 💬 Support
 
-- **Issues**: [Issues](https://gitlab.kerfleury.fr/ha/snapshot/-/issues)
-- **Wiki**: [Wiki](https://gitlab.kerfleury.fr/ha/snapshot/-/wikis/home)
+- **Issues**: [Issues](https://github.com/barre35/snapshot/issues)
+- **Wiki**: [Wiki](https://github.com/barre35/snapshot/wiki)
