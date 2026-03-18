@@ -1,0 +1,27 @@
+{
+  "title": "Camera Snapshot",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Integration configuration",
+        "description": "Please enter the details for your camera snapshot service.",
+        "data": {
+          "name": "Integration Name",
+          "url": "Snapshot URL",
+          "delay": "Update Interval (seconds)"
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Integration configuration",
+        "data": {
+          "url": "Snapshot URL",
+          "delay": "Update Interval (seconds)"
+        }
+      }
+    }
+  }
+}

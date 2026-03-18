@@ -1,0 +1,27 @@
+{
+  "title": "Instantané Caméra",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configuration de l'intégration",
+        "description": "Veuillez saisir les détails de votre service de capture d'image.",
+        "data": {
+          "name": "Nom de l'intégration",
+          "url": "URL de l'instantané (Snapshot)",
+          "delay": "Intervalle de mise à jour (secondes)"
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Configuration de l'intégration",
+        "data": {
+          "url": "URL de l'instantané (Snapshot)",
+          "delay": "Intervalle de mise à jour (secondes)"
+        }
+      }
+    }
+  }
+}

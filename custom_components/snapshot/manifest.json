@@ -1,0 +1,11 @@
+{
+  "domain": "snapshot",
+  "name": "Camera snapshot",
+  "codeowners": ["@barre35"],
+  "icon": "mdi:camera",
+  "config_flow": true,
+  "iot_class": "local_polling",
+  "dependencies": [],
+  "documentation": "",  
+  "version": "1.0.0"
+}
