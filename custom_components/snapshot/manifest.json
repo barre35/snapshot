@@ -6,6 +6,6 @@
   "config_flow": true,
   "iot_class": "local_polling",
   "dependencies": [],
-  "documentation": "",  
-  "version": "1.0.1"
+  "documentation": "https://github.com/barre35/snapshot",
+  "version": "1.0.2"
 }
