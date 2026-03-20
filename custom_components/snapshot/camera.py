@@ -39,13 +39,10 @@ class SnapshotCamera(CoordinatorEntity, Camera):
 
         self._attr_unique_id = f"{entry.entry_id}_camera"
         #self._attr_device_class = ???
-        self._attr_name = f"{entry.title} Snaphot Camera"
-        
+        #self._attr_name = f"{entry.title} Camera"
+        self.translation_key = "camera_image"
+        self._attr_has_entity_name = True
         self._attr_supported_features = CameraEntityFeature.ON_OFF
-        
-    @property
-    def name(self):
-        return f"{ self._entry.title } Snaphot Image"
         
     @property
     def is_on(self) -> bool:
@@ -88,9 +85,9 @@ class SnapshotCamera(CoordinatorEntity, Camera):
     def device_info(self):
         return {
             "identifiers": {(DOMAIN, self._entry.entry_id)},
-            "name": f"{ self._entry.title } Snapshot",
-            "manufacturer": "Snapshot",
-            "model": "Snapshot Camera",
+            "name": f"{ self._entry.title }",
+            "manufacturer": "@barre35",
+            "model": "Camera Snapshot",
         }
     
     @property

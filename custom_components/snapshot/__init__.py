@@ -67,7 +67,7 @@ async def update_listener(hass: HomeAssistant, entry: ConfigEntry) -> None:
     
     coordinator.config_entry = entry
     
-    new_delay = entry.options.get("delay", 5)    
+    new_delay = entry.data.get("delay", 5)    
     coordinator.update_interval = timedelta(seconds=new_delay)
     
     _LOGGER.info("Update scheduler timer with %s seconds", new_delay)

@@ -20,14 +20,14 @@ class SnapshotDataUpdateCoordinator(DataUpdateCoordinator):
             hass,
             _LOGGER,
             name=f"{entry.title} Coordinator",
-            update_interval=timedelta(seconds=entry.options.get("delay", 5)),
+            update_interval=timedelta(seconds=entry.data.get("delay", 5)),
         )
     
         self.config_entry = entry
 
     async def async_set_update_interval(self, active: bool):
         if active:
-            delay = self.config_entry.options.get("delay", 5)
+            delay = self.config_entry.data.get("delay", 5)
             self.update_interval = timedelta(seconds=delay)
             _LOGGER.debug("Coordinator updated (%ss)", delay)
             await self.async_request_refresh()
@@ -39,7 +39,7 @@ class SnapshotDataUpdateCoordinator(DataUpdateCoordinator):
     
         now = datetime.now()          
             
-        url = self.hass.config_entries.async_get_entry(self.config_entry.entry_id).options.get("url", "")
+        url = self.hass.config_entries.async_get_entry(self.config_entry.entry_id).data.get("url", "")
         
         try:
             session = async_get_clientsession(self.hass)

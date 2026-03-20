@@ -13,7 +13,7 @@ _LOGGER = logging.getLogger(__name__)
 # Config flow pour la modification
 # ================================
 
-class SnapshotOptionsFlowHandler(config_entries.OptionsFlow):
+class SnapshotOptionsFlow(config_entries.OptionsFlow):
 
     VERSION = 1
 
@@ -32,17 +32,28 @@ class SnapshotOptionsFlowHandler(config_entries.OptionsFlow):
 
         if user_input is not None:
         
-            return self.async_create_entry(title="", data=user_input)
+            new_data = {**self.config_entry.data, **user_input}
+            
+            self.hass.config_entries.async_update_entry(
+                self.config_entry, 
+                title=f"{user_input['name']}",
+                data=new_data
+            )
+            
+            return self.async_create_entry(title="", data={})
             
         # --------------------------
         # Formulaire de modification         
         # --------------------------
         
+        data = self.config_entry.data
+        
         return self.async_show_form(
             step_id="init", 
             data_schema=vol.Schema({
-                vol.Required("url", default=self.config_entry.options.get("url")): str,
-                vol.Required("delay", default=self.config_entry.options.get("delay")): vol.Coerce(int),
+                vol.Required("name", default=data.get("name")): str,
+                vol.Required("url", default=data.get("url")): str,
+                vol.Required("delay", default=data.get("delay")): vol.Coerce(int),
             }),
             errors=errors
         )
@@ -55,6 +66,15 @@ class SnapshotConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     VERSION = 1
 
+    # ===================
+    # Option flow handler
+    # ===================
+    
+    @staticmethod
+    @callback
+    def async_get_options_flow(config_entry: config_entries.ConfigEntry):    
+        return SnapshotOptionsFlow()
+        
     # =========
     # Main flow
     # =========
@@ -72,12 +92,7 @@ class SnapshotConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
        
             return self.async_create_entry(
                 title=f"{user_input['name']}",
-                data = {
-                },
-                options={
-                    "url": user_input["url"],
-                    "delay": user_input["delay"], 
-                }
+                data = user_input
             )
             
         # ====================
@@ -93,14 +108,4 @@ class SnapshotConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             }),
             errors=errors
         )
-        
-    # =======================
-    # Allow modification flow
-    # =======================
-    
-    @staticmethod
-    @callback
-    def async_get_options_flow(config_entry: config_entries.ConfigEntry) -> SnapshotOptionsFlowHandler:
-    
-        return SnapshotOptionsFlowHandler() # Retirez 'config_entry' ici
         

@@ -23,5 +23,17 @@
         }
       }
     }
+  },
+  "entity": {
+    "binary_sensor": {
+      "camera_availability": {
+        "name": "Availability"
+      }
+    },
+    "camera": {
+      "camera_image": {
+        "name": "Image"
+      }
+    }
   }
 }
