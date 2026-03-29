@@ -43,6 +43,10 @@ class SnapshotCamera(CoordinatorEntity, Camera):
         self.translation_key = "camera_image"
         self._attr_has_entity_name = True
         self._attr_supported_features = CameraEntityFeature.ON_OFF
+    
+    @property
+    def frame_interval(self):
+        return 1
         
     @property
     def is_on(self) -> bool:
